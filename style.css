@@ -34,12 +34,13 @@ body {
     margin: 20px auto;
     text-align: center;
     flex: 1;
+    padding: 0 10px;
 }
 
 h1 {
     color: var(--primary-color);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .controls {
@@ -62,11 +63,13 @@ h1 {
 }
 
 #search-input {
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
 }
 
 #type-filter {
-    width: 150px;
+    width: 100%;
+    max-width: 150px;
 }
 
 #gacha-button, #dark-mode-toggle {
@@ -74,6 +77,8 @@ h1 {
     color: #333;
     cursor: pointer;
     font-weight: bold;
+    width: 100%;
+    max-width: 150px;
 }
 
 #gacha-button:hover, #dark-mode-toggle:hover {
@@ -99,9 +104,8 @@ h1 {
 
 /* Pokemon List */
 .pokemon-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
     margin-top: 20px;
 }
@@ -111,7 +115,6 @@ h1 {
     border: 2px solid var(--primary-color);
     border-radius: 10px;
     padding: 15px;
-    width: 150px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
@@ -130,7 +133,7 @@ h1 {
 
 .pokemon-card p {
     margin: 10px 0 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: var(--text-color);
 }
@@ -197,6 +200,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .pagination button {
@@ -207,10 +211,19 @@ h1 {
     cursor: pointer;
     font-weight: bold;
     color: #333;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .pagination button:hover {
     background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.pagination button.active {
+    background-color: var(--secondary-color);
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 /* Footer */
@@ -229,6 +242,10 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
     .controls {
         flex-direction: column;
         align-items: center;
@@ -236,14 +253,28 @@ footer p {
 
     #search-input, #type-filter, #gacha-button, #dark-mode-toggle {
         width: 100%;
+        max-width: none;
+    }
+
+    .pokemon-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 
     .pokemon-card {
-        width: 120px;
+        width: 100%;
     }
 
     .pokemon-card img {
         width: 80px;
         height: 80px;
+    }
+
+    .pagination {
+        gap: 5px;
+    }
+
+    .pagination button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
     }
 }

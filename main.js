@@ -35,19 +35,14 @@ async function fetchPokemonList() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
         const data = await response.json();
         console.log("Pokemon List Data:", data); // Periksa data di console
-
-        // Ambil detail setiap Pokemon
-        allPokemon = await Promise.all(
-            data.results.map(async (pokemon) => {
-                const detail = await fetchPokemonDetail(pokemon.url);
-                return {
-                    ...pokemon,
-                    types: detail.types.map(type => type.type.name),
-                    sprites: detail.sprites,
-                };
-            })
-        );
-
+        allPokemon = await Promise.all(data.results.map(async (pokemon) => {
+            const detail = await fetchPokemonDetail(pokemon.url);
+            return {
+                ...pokemon,
+                types: detail.types.map(type => type.type.name),
+                sprites: detail.sprites,
+            };
+        }));
         hideLoading();
         displayPokemonList();
     } catch (error) {
@@ -110,6 +105,12 @@ async function displayPokemonList() {
             currentPage = i;
             displayPokemonList();
         });
+
+        // Tambahkan class active jika tombol adalah halaman saat ini
+        if (i === currentPage) {
+            button.classList.add('active');
+        }
+
         paginationContainer.appendChild(button);
     }
 }
