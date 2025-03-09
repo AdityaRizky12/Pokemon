@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Pokemon List</h1>
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="Search Pokemon...">
+            <select id="type-filter">
+                <option value="">All Types</option>
+            </select>
+            <button id="gacha-button">Gacha Pokemon</button>
+            <button id="dark-mode-toggle">Dark Mode</button>
+        </div>
+        <div id="loading" class="loading-spinner"></div>
+        <div id="pokemon-detail" class="pokemon-detail"></div>
+        <div id="pokemon-list" class="pokemon-list"></div>
+        <div id="pagination" class="pagination"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>By Aditya Rizky Ramadhan</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
